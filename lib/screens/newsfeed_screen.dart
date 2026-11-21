@@ -12,7 +12,8 @@ class NewsfeedScreen extends StatelessWidget {
           userName: 'Steve Rogers',
           postContent: 'I can do this all day! #AvengersAssemble',
           date: '2 hours ago',
-          numOfLikes: 10,
+          numOfLikes: 1825,
+          profileImage: 'assets/images/capt.jpg',
         ),
         NewsfeedCard(
           userName: 'Tony Stark',

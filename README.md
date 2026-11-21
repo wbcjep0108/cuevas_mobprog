@@ -1,17 +1,21 @@
-# cuevas_mobprog
+## Lab Activity 1: discussion
 
-A new Flutter project.
+**Question:** Discuss how you integrate the Image to the newsfeed_card.dart
+and make it dynamic whether it has image or not.
 
-## Getting Started
+**Answer:**
+I added an optional boolean parameter `hasImage` to the `NewsfeedCard`
+widget. Inside `build()`, I used a ternary expression: if `hasImage == true`,
+the card displays an `Image.asset(...)` widget; otherwise it returns
+`SizedBox.shrink()`, an empty widget that takes no space. This way each post
+decides for itself whether to show a picture, and posts without an image have
+no blank gap.
 
-This project is a starting point for a Flutter application.
+To make the images dynamic per post, I also added `profileImage` and
+`postImage` parameters to `NewsfeedCard`. Each card in
+`newsfeed_screen.dart` passes its own image path, so Steve Rogers uses
+`capt.jpg` and Tony Stark uses `iron_man.jpg`.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Other enhancements: I replaced the person icons with `CircleAvatar` for the
+profile pictures, and changed Like, Comment, and Share into `TextButton.icon`
+widgets.

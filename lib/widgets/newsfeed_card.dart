@@ -9,6 +9,7 @@ class NewsfeedCard extends StatelessWidget {
   final String date;
   final int? numOfLikes;
   final bool? hasImage;
+  final String profileImage;
   const NewsfeedCard({
     super.key,
     required this.userName,
@@ -16,6 +17,7 @@ class NewsfeedCard extends StatelessWidget {
     required this.date,
     this.numOfLikes,
     this.hasImage,
+    this.profileImage = 'assets/images/iron_man.jpg',
   });
 
   @override
@@ -35,7 +37,12 @@ class NewsfeedCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(Icons.person),
+                // Enhancement 2: avatar for the post author
+                CircleAvatar(
+                  radius: ScreenUtil().setSp(18),
+                  backgroundImage:
+                      AssetImage(profileImage),
+                ),
                 SizedBox(width: screenUtilWidth),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,44 +72,53 @@ class NewsfeedCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                Spacer(),
-                Icon(Icons.more_horiz),
+                const Spacer(),
+                const Icon(Icons.more_horiz),
               ],
             ),
             SizedBox(height: ScreenUtil().setHeight(5)),
-            // post Content
             CustomText(
               text: postContent,
               fontSize: ScreenUtil().setSp(12),
               color: Colors.black,
             ),
             SizedBox(height: ScreenUtil().setHeight(5)),
-            hasImage == true
-                ? const Image(image: AssetImage('assets/images/iron_man.jpg'))
-                : SizedBox.shrink(),
 
+            // Enhancement 1: Image widget, shown only when hasImage is true
+            hasImage == true
+                ? Image.asset(
+                    'assets/images/iron_man.jpg',
+                    width: double.infinity,
+                    height: ScreenUtil().setHeight(220),
+                    fit: BoxFit.cover,
+                  )
+                : const SizedBox.shrink(),
+
+            // Enhancement 3: Like, Comment, Share as button widgets
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton.icon(
-                  onPressed: () {
-                    // print('Like button pressed');
-                  },
-                  icon: Icon(Icons.thumb_up, color: fbPrimary),
+                  onPressed: () {},
+                  icon: const Icon(Icons.thumb_up_outlined, color: fbDarkPrimary),
                   label: CustomText(
-                    text: numOfLikes.toString(),
+                    text: (numOfLikes ?? 0).toString(),
                     fontSize: ScreenUtil().setSp(12),
                     color: fbDarkPrimary,
                   ),
                 ),
-                CustomText(
-                  text: 'Comment',
-                  fontSize: ScreenUtil().setSp(12),
-                  color: fbDarkPrimary,
+                TextButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.comment_outlined, color: fbDarkPrimary),
+                  label: CustomText(
+                    text: 'Comment',
+                    fontSize: ScreenUtil().setSp(12),
+                    color: fbDarkPrimary,
+                  ),
                 ),
                 TextButton.icon(
                   onPressed: () {},
-                  icon: Icon(Icons.redo, color: fbDarkPrimary),
+                  icon: const Icon(Icons.redo, color: fbDarkPrimary),
                   label: CustomText(
                     text: 'Share',
                     fontSize: ScreenUtil().setSp(12),
@@ -111,9 +127,23 @@ class NewsfeedCard extends StatelessWidget {
                 ),
               ],
             ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: CustomText(
+                text: 'Most relevant',
+                fontSize: ScreenUtil().setSp(12),
+                color: Colors.grey,
+              ),
+            ),
+            SizedBox(height: ScreenUtil().setHeight(5)),
             Row(
               children: [
-                Icon(Icons.person),
+                // Enhancement 2 again: avatar next to the comment box
+                CircleAvatar(
+                  radius: ScreenUtil().setSp(12),
+                  backgroundImage:
+                      const AssetImage('assets/images/iron_man.jpg'),
+                ),
                 SizedBox(width: ScreenUtil().setWidth(10)),
                 Container(
                   padding: EdgeInsets.fromLTRB(
