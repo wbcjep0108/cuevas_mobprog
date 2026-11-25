@@ -1,5 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cuevas_mobprog/constant.dart';
+import 'package:cuevas_mobprog/constants.dart';
 import 'package:cuevas_mobprog/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +10,7 @@ class NewsfeedCard extends StatelessWidget {
   final int? numOfLikes;
   final bool? hasImage;
   final String profileImage;
+  final String? imagePath;
   const NewsfeedCard({
     super.key,
     required this.userName,
@@ -18,6 +19,7 @@ class NewsfeedCard extends StatelessWidget {
     this.numOfLikes,
     this.hasImage,
     this.profileImage = 'assets/images/iron_man.jpg',
+    this.imagePath,
   });
 
   @override
@@ -84,15 +86,20 @@ class NewsfeedCard extends StatelessWidget {
             ),
             SizedBox(height: ScreenUtil().setHeight(5)),
 
-            // Enhancement 1: Image widget, shown only when hasImage is true
-            hasImage == true
-                ? Image.asset(
-                    'assets/images/iron_man.jpg',
-                    width: double.infinity,
-                    height: ScreenUtil().setHeight(220),
-                    fit: BoxFit.cover,
-                  )
-                : const SizedBox.shrink(),
+            // Enhancement 1: no image, real image, or placeholder
+            if (hasImage == true && imagePath != null)
+              Image.asset(
+                imagePath!,
+                width: double.infinity,
+                height: ScreenUtil().setHeight(220),
+                fit: BoxFit.cover,
+              )
+            else if (hasImage == true)
+              const SizedBox(
+                height: 250,
+                width: double.infinity,
+                child: Placeholder(),
+              ),
 
             // Enhancement 3: Like, Comment, Share as button widgets
             Row(
