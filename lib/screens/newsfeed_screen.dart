@@ -9,7 +9,7 @@ class Post {
     required this.numOfLikes,
     required this.hasImage,
     this.imagePath,
-    this.profileImage = 'assets/images/capt.jpg',
+    this.profileImage,
   });
 
   final String userName;
@@ -18,23 +18,26 @@ class Post {
   final int numOfLikes;
   final bool hasImage;
   final String? imagePath;
-  final String profileImage;
+  final String? profileImage;
 }
 
 const List<Post> posts = [
   Post(
-    userName: 'Cyrus Robles',
+    userName: 'Jennifer Cuevas',
     date: 'October 11',
     content: 'Kamusta',
     numOfLikes: 100,
     hasImage: false,
+    profileImage: 'assets/images/kuromi.jpg',
   ),
   Post(
-    userName: 'Roben Juanatas',
+    userName: 'Blossom Cuevas',
     date: 'December 2',
     content: 'Kicking off the holiday season with ICpEP-NCR!',
     numOfLikes: 250,
     hasImage: true,
+    imagePath: 'assets/images/peppa.jpg',
+    profileImage: 'assets/images/blossom.png',
   ),
   Post(
     userName: 'Steve Rogers',
@@ -43,6 +46,7 @@ const List<Post> posts = [
     numOfLikes: 1825,
     hasImage: true,
     imagePath: 'assets/images/capt.jpg',
+    profileImage: 'assets/images/capt.jpg',
   ),
   Post(
     userName: 'Tony Stark',
@@ -51,49 +55,40 @@ const List<Post> posts = [
     numOfLikes: 3000,
     hasImage: true,
     imagePath: 'assets/images/iron_man.jpg',
+    profileImage: 'assets/images/iron_man.jpg',
   ),
   Post(
-    userName: 'Maria Santos',
+    userName: 'Coco',
     date: 'November 28',
     content: 'Study group tonight, who is in?',
     numOfLikes: 42,
     hasImage: false,
+    profileImage: 'assets/images/coco.jpg',
   ),
   Post(
-    userName: 'Juan Dela Cruz',
+    userName: 'Kuromi Cuevas',
     date: 'November 20',
     content: 'Finally finished Lab Activity 2!',
     numOfLikes: 310,
     hasImage: true,
+    imagePath: 'assets/images/thug.jpg',
+    profileImage: 'assets/images/kuromi1.jpg',
   ),
   Post(
-    userName: 'Ana Reyes',
+    userName: 'Chogs',
     date: 'November 15',
     content: 'Flutter tip of the day: use const wherever you can.',
     numOfLikes: 87,
     hasImage: false,
   ),
   Post(
-    userName: 'Paolo Garcia',
+    userName: 'Pumpkin',
     date: 'November 9',
     content: 'Weekend plans: sleep, code, repeat.',
     numOfLikes: 156,
     hasImage: true,
-    imagePath: 'assets/images/iron_man.jpg',
-  ),
-  Post(
-    userName: 'Bea Mendoza',
-    date: 'October 30',
-    content: 'Campus life is better with friends.',
-    numOfLikes: 73,
-    hasImage: false,
-  ),
-  Post(
-    userName: 'Miguel Torres',
-    date: 'October 22',
-    content: 'Coding night fueled by coffee.',
-    numOfLikes: 205,
-    hasImage: true,
+    profileImage: 'assets/images/pumpkin.jpg',
+    imagePath: 'assets/images/pumpkin1.png',
   ),
 ];
 

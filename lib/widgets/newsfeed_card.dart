@@ -9,7 +9,7 @@ class NewsfeedCard extends StatelessWidget {
   final String date;
   final int? numOfLikes;
   final bool? hasImage;
-  final String profileImage;
+  final String? profileImage;
   final String? imagePath;
   const NewsfeedCard({
     super.key,
@@ -18,9 +18,25 @@ class NewsfeedCard extends StatelessWidget {
     required this.date,
     this.numOfLikes,
     this.hasImage,
-    this.profileImage = 'assets/images/iron_man.jpg',
+    this.profileImage,
     this.imagePath,
   });
+
+  // Placeholder profile photo: initials on a color picked from the name
+  String _initials() {
+    final parts = userName.trim().split(' ');
+    if (parts.length == 1) {
+      return parts.first.substring(0, 1).toUpperCase();
+    }
+    return (parts.first.substring(0, 1) + parts.last.substring(0, 1))
+        .toUpperCase();
+  }
+
+  Color _placeholderColor() {
+    const colors = [fbPrimary, fbSecondary, fbDarkPrimary, fbLightPrimary];
+    final sum = userName.codeUnits.fold<int>(0, (a, b) => a + b);
+    return colors[sum % colors.length];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +58,17 @@ class NewsfeedCard extends StatelessWidget {
                 // Enhancement 2: avatar for the post author
                 CircleAvatar(
                   radius: ScreenUtil().setSp(18),
-                  backgroundImage:
-                      AssetImage(profileImage),
+                  backgroundColor: _placeholderColor(),
+                  backgroundImage: profileImage != null
+                      ? AssetImage(profileImage!)
+                      : null,
+                  child: profileImage == null
+                      ? CustomText(
+                          text: _initials(),
+                          fontSize: ScreenUtil().setSp(12),
+                          color: fbTextColorWhite,
+                        )
+                      : null,
                 ),
                 SizedBox(width: screenUtilWidth),
                 Column(

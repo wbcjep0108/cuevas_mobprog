@@ -1,4 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:cuevas_mobprog/constants.dart';
 import 'package:cuevas_mobprog/screens/home_screen.dart';
 import 'package:cuevas_mobprog/screens/newsfeed_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MainApp extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: "Facebook Replication",
+          title: appName,
           initialRoute: "/home",
           routes: {
             "/newsfeed": (context) => const NewsfeedScreen(),
